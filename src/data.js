@@ -157,11 +157,73 @@ const data = [
 // }
 
 //czy jest ktos z krakowa
+//
+// const isCracowHere = function(people) {
+//     const isCracow = people.some((person) => person.city.toLowerCase() === 'krakow' || person.city.toLowerCase() === 'cracow');
+//     return isCracow;
+// };
+//
+// const result = isCracowHere(data);
+// console.log(result);
+//
+// //czy wszyscy kochaja JS
+//
+// function isEveryoneLovesJS1(items) {
+//     for (const item of items) {
+//         if (!item.hobbies.includes('js')) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+//
+// const isEveryoneLovesJS = (items) => items
+//     .every((item) => !item.hobbies.includes('js'))
+//
+// const result = isEveryoneLovesJS1(data);
+// console.log(result)
 
-const isCracowHere = function(people) {
-    const isCracow = people.some((person) => person.city.toLowerCase() === 'krakow' || person.city.toLowerCase() === 'cracow');
-    return isCracow;
-};
+//ile jest hobbies bez powtorzen
 
-const result = isCracowHere(data);
-console.log(result);
+
+let hobbiesCountMap = new Map();
+
+data.forEach(data => {
+    data.hobbies.forEach(hobby => {
+        if (hobbiesCountMap.has(hobby)) {
+            hobbiesCountMap.set(hobby, hobbiesCountMap.get(hobby) + 1);
+        } else {
+            hobbiesCountMap.set(hobby, 1);
+        }
+    });
+});
+
+hobbiesCountMap.forEach((count, hobby) => {
+    console.log(`${hobby}: ${count}`);
+});
+
+const countUniqueHobbies = function (elements) {
+    const hobbies = [];
+
+    for (const element in elements) {
+        for (const hobby of element.hobbies) {
+            if (!hobbies.includes(hobby)) {
+                hobbies.push(hobby)
+            }
+        }
+    }
+    return hobbies.length;
+}
+
+const countUniqueHobbies2 = function (elements) {
+    const hobbies = new Set();
+
+    for (const element of elements) {
+        for (const hobby of element) {
+
+        }
+    }
+}
+
+const countUniqueHobbies3 = (elements) => new Set(elements.flatMap((element) => element.hobbies)).size;
+
